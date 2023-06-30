@@ -126,3 +126,4 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+PARLER_ENABLE_CACHING = False 

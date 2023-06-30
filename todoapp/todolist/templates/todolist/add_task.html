@@ -9,31 +9,38 @@
     <link href="{% static 'css/mystyle.css' %}" rel="stylesheet">
   </head>
   <body>
-    <h2>Add Task</h2>
-    <form method="POST" class="form">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label for="title" class="form-label myFormLabel">Title</label>
-            <input name="title" id="title" class="form-control" type="text">
-        </div>
-        <div class="mb-3">
-            <label for="description" class="form-label myFormLabel">Description</label>
-            <textarea name="description" id="description" class="form-control"></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="priority" class="form-label myFormLabel">Priority</label>
-            <select name="priority" id="priority" class="form-control">
-                <option value="High Priority">High Priority</option>
-                <option value="Medium Priority">Medium Priority</option>
-                <option value="Low Priority">Low Priority</option>
-                <option value="Optional">Optional</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-secondary">Submit</button>
-        <a href="/">
-            <button class="btn btn-secondary">Cancel</button>
-        </a>
-    </form>
+    <div class="myFormWrap">
+      <h2>Add Task</h2>
+      <form method="POST" class="myForm">
+          {% csrf_token %}
+          {% if errors %}
+            <div class="myErrorMessageWrap">
+              {{ errors }}
+            </div>
+          {% endif %}
+          <div class="mb-3">
+              <label for="title" class="form-label myFormLabel">Title</label>
+              <input name="title" id="title" class="form-control" type="text">
+          </div>
+          <div class="mb-3">
+              <label for="description" class="form-label myFormLabel">Description</label>
+              <textarea name="description" id="description" class="form-control"></textarea>
+          </div>
+          <div class="mb-3">
+              <label for="priority" class="form-label myFormLabel">Priority</label>
+              <select name="priority" id="priority" class="form-control">
+                  <option value="High Priority">High Priority</option>
+                  <option value="Medium Priority">Medium Priority</option>
+                  <option value="Low Priority">Low Priority</option>
+                  <option value="Optional">Optional</option>
+              </select>
+          </div>
+          <button type="submit" class="btn btn-secondary">Submit</button>
+          <a href="/">
+              <button class="btn btn-secondary">Cancel</button>
+          </a>
+      </form>
+    </div>
   </body>
 </html>
   

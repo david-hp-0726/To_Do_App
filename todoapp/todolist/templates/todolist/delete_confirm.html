@@ -9,18 +9,20 @@
     <link href="{% static 'css/mystyle.css' %}" rel="stylesheet">
   </head>
   <h2 class="textCenter">Confirm Delete</h2>
-  <div class="myText">Are you sure you want to delete this item?</div>
-    
-  <div class="textCenter">
-    <div class="deleteConfirmButton">
-        <a href="{% url 'delete_task' item_id %}">
-        <button class="btn btn-secondary myButton">Yes</button>
-        </a>
-    </div>
-    <div class="deleteConfirmButton">
-        <a href="/">
-        <button class="btn btn-secondary myButton">No</button>
-        </a>
-    </div>
-  </div>     
+  <div class="myFormWrap">
+    <div class="myText">Are you sure you want to delete this item?</div>
+      
+    <div class="textCenter myForm">
+      <div class="deleteConfirmButton">
+          <a href="{% url 'delete_task' item_id %}">
+          <button class="btn btn-secondary myButton">Yes</button>
+          </a>
+      </div>
+      <div class="deleteConfirmButton">
+          <a href="/">
+          <button class="btn btn-secondary myButton">No</button>
+          </a>
+      </div>
+    </div>     
+  </div>
 </html>

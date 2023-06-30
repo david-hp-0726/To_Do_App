@@ -68,7 +68,6 @@ def sign_up(request):
             authenticated_user = authenticate(username=user.username, password=raw_password)
             login(request, authenticated_user)
             return redirect("home")
-        
         else:
             context["errors"] = form.errors
             return render(request, 'todolist/sign_up.html', context)
@@ -79,15 +78,32 @@ def add_task(request):
     context = {"request": request}
     if request.method == 'POST':
         form = ListForm(request.POST)
-        if form.is_valid():
+        if form['title'].value() == "":
+            context["errors"] = "Title cannot be empty"
+            return render(request, 'todolist/add_task.html', context)
+        else:
             listForm = form.save(commit=False)
             listForm.user = request.user
             listForm.save()
-        else:
-            print("form is not valid")
         return redirect('home')
     else:
         return render(request, 'todolist/add_task.html', context)
+
+def edit_task(request, item_id):
+    item = List.objects.get(pk = item_id)
+    context = {"request": request, "item": item}
+    if request.method == 'POST':
+        form = ListForm(request.POST)
+        if form['title'].value() == "":
+            context["errors"] = "Title cannot be empty!"
+            return render(request, 'todolist/edit_task.html', context)
+        else:
+            List.objects.filter(pk = item_id).update(title=form['title'].value(), description=form['description'].value(), priority=form['priority'].value())
+            return redirect('home')
+    
+    else:
+        return render(request, 'todolist/edit_task.html', context)
+    
 
 def delete_confirm(request, item_id):
     context = {"item_id": item_id}
@@ -103,11 +119,3 @@ def switch_status(request, item_id):
     new_status = not item.completed
     List.objects.filter(pk = item_id).update(completed = new_status)
     return redirect('home')
-
-# def switch_status_true(request, item_id):
-#     List.objects.filter(pk = item_id).update(completed=True)
-#     return redirect('home')
-
-# def switch_status_false(request, item_id):
-#     List.objects.filter(pk = item_id).update(completed=False)
-#     return redirect('home')
