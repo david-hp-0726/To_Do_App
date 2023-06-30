@@ -1,0 +1,37 @@
+.textCenter {
+    text-align: center;
+    display: block !important;
+}
+
+.header {
+    font-size: 10px !important;
+}
+
+.myFormLabel {
+    font-weight: bold;
+}
+
+
+.myText {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.deleteConfirmButton {
+    display: inline-block;
+    margin-top: 30px;
+}
+
+.toDoList {
+    border: 2px solid RGBA(33, 37, 41);
+}
+
+.toDoListShort {
+    width: 50px;
+}
+
+.toDoListLong {
+    width: 250px;
+}
